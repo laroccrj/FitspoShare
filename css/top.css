@@ -9,8 +9,30 @@
     left:5%;
     color:#0464F4;
 }
-#login {
+#access {
     position:absolute;
     top:0px;
     right:0px;
+}
+#info {
+    position: relative;
+    padding:10px;
+    margin-top:10px;
+    color: #ffa100;
+    font-weight:bold;
+}
+#info:hover {
+    background-color:#eee;
+}
+#info #img{
+    float:left;
+    margin-top:-8px;
+    margin-right:10px;
+    width:32px;
+    height:32px;
+    overflow:hidden;
+}
+#info #img img {
+    width:32px;
+    height:auto;
 }
