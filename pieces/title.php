@@ -1,6 +1,5 @@
-<?php
-	echo	'<div id="top">
-				<div id="title">
-					Fitspo Share
-				</div>
-			</div>';
+<div id="top">
+    <div id="title">
+        Fitspo Share
+    </div>
+</div>

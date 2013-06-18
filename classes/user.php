@@ -15,25 +15,29 @@
             $this->id = $id;
         }
         
-        private function runUpdateQuery($query) {
-			$conn = new Mongo();
-            $db = $conn->fitspo;
-            $collection = $db->users;
-			
-            $collection->update(array("_id" => new MongoId($this->id)), $query);
+        function signUp($username, $email, $password, $confPassword) {
+            $error = array();
             
-            $this->updateInfo();
+            if(filter_var($username, FILTER_SANITIZE_STRING) != $username)
+                $error[] = "Invalid username";
+            if(filter_var($password, FILTER_SANITIZE_STRING) != $password)
+                $error[] = "Invalid password";
+            if(!filter_var($email, FILTER_VALIDATE_EMAIL))
+                $error[] = "Invalid email";
+            if($password != $confPassword)
+                $error[] = "Passwords do not match";
+            if(count($error) > 0)
+                return $error;
             
-            $conn->close();
-		}
-		
-		function signUp($username, $email, $password, $confPassword) {
-            //TODO: Error checking
-            
-            //If we don't have errors, let's sign up!
             $conn = new Mongo();
             $db = $conn->fitspo;
             $collection = $db->users;
+            
+            if($collection->findOne(array("username" => $username)) != null){
+                $error[] = "Username already in use";
+                return $error;
+            }
+            
             
             $user = array(
                         "username" => $username,
@@ -48,16 +52,19 @@
             
             $collection->insert($user);
             
-            $insertedUser = $collection->findOne(array( "username" => $user["username"]));
+            $user = $collection->findOne(array( "username" => $user["username"]));
 
-            $this->id = $insertedUser["_id"];
+            $this->id = $user["_id"];
             $this->updateInfo();
             $this->loggedIn = true;
             
             $conn->close();
+            
+            return = "SUCCESS";
         }
         
         function updateInfo() {
+            //TODO: get user information and apply it to variables
             $conn = new Mongo();
             $db = $conn->fitspo;
             $collection = $db->users;
@@ -73,31 +80,5 @@
             $this->favoritePictures = $user["favoritePictures"];
             
             $conn->close();
-			
-        }
-        
-        function addPicture($pictureId) {
-            $query = array('$push' => array("pictures" => $pictureId));
-			
-            $this->runUpdateQuery($query);
-        }
-		
-		function addFavoritPicture($pictureId) {
-            $query = array('$push' => array("favoritePictures" => $pictureId));
-            
-            $this->runUpdateQuery($query);
-        }
-		
-		function addHighFive() {
-            $query = array( '$inc' => array("highFives" => 1));
-            
-            $this->runUpdateQuery($query);
-        }
-		
-		function changeNick($name) {
-            $query = array('$set' => array("nick" => $name));
-            
-            $this->runUpdateQuery($query);
-            
         }
     }
