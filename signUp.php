@@ -12,11 +12,12 @@
         <link rel="stylesheet" href="css/top.css" />
         <link rel="stylesheet" href="css/nav.css" />
         <link rel="stylesheet" href="css/signUp.css" />
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.0/jquery.min.js"></script>
+        <script src="js/inputOverlay.js"></script>
     </head>
     <body>
         <div id="container">
             <?php include "pieces/title.php" ?>
-            <?php include "pieces/nav.php" ?>
             <div id="content">
                 <h1>Sign Up Now<br />
                 <span class="subheader">You can start getting inspired, or start inspiring!</span></h1>

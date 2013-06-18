@@ -13,21 +13,31 @@
     position:absolute;
     top:0px;
     right:0px;
+    padding-top:15px;
+}
+#logout {
+    display:inline;
+    margin-left:10px;
+    padding:10px;
+    color:#0464F4;
+    font-weight:bold;
+}
+#logout:hover {
+    color: #ffa100;
 }
 #info {
     position: relative;
     padding:10px;
-    margin-top:10px;
     color: #ffa100;
     font-weight:bold;
+    display:inline;
 }
 #info:hover {
-    background-color:#eee;
+    color:#0464F4;
 }
 #info #img{
     float:left;
     margin-top:-8px;
-    margin-right:10px;
     width:32px;
     height:32px;
     overflow:hidden;
@@ -35,4 +45,46 @@
 #info #img img {
     width:32px;
     height:auto;
+}
+#login div {
+    display:inline;
+    position:relative;
+}
+#login .input {
+    display:inline;
+    position:relative;
+}
+#login .input input[type=text],#container input[type=password]{
+    background: #fff;
+    padding:3px;
+    border:1px solid #0464F4;
+    color:#0464F4;
+} 
+#login .input .overlay{
+    position:absolute;
+    top:2px;
+    left:5px;
+    color:#aaaaaa;
+}
+#login input[type=submit] {
+    color:#0464F4;
+    background-color:#fff;
+    border:none;
+    font-weight:bold;
+    font-size:16px;
+}
+#login input[type=submit]:hover {
+    color:#ffa100;
+    cursor:pointer;
+}
+#login a{
+    color:#0464F4;
+    font-weight:bold;
+}
+#login a:hover{
+    color:#ffa100;
+}
+#login #signup {
+    border-left:1px solid #ffa100;
+    padding-left:10px;
 }
