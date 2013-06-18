@@ -1,4 +1,5 @@
 <?php
+    include("basicIncludes.php");
     session_start();
 ?>
 <!DOCTYPE html>
@@ -8,8 +9,13 @@
         <title>Fitspo Share</title>
         <link rel="stylesheet" href="css/reset.css" />
         <link rel="stylesheet" href="css/main.css" />
+        <link rel="stylesheet" href="css/top.css" />
+        <link rel="stylesheet" href="css/nav.css" />
     </head>
     <body>
-        <?php include "pieces/title.php" ?>
+        <div id="container">
+            <?php include "pieces/title.php" ?>
+            <?php include "pieces/nav.php" ?>
+        </div>
     </body>
 </html>

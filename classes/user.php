@@ -27,27 +27,39 @@
             $conn->close();
         }
 
-	function signUp($username, $email, $password, $confPassword) {
-            $error = array();
+        function signUp($username, $email, $password, $confPassword) {
+            unset($_SESSION["errors"]["signUp"]);
             
-            if(filter_var($username, FILTER_SANITIZE_STRING) != $username)
-                $error[] = "Invalid username";
-            if(filter_var($password, FILTER_SANITIZE_STRING) != $password)
-                $error[] = "Invalid password";
-            if(!filter_var($email, FILTER_VALIDATE_EMAIL))
-                $error[] = "Invalid email";
+            if(filter_var($username, FILTER_SANITIZE_STRING) != $username ||
+                $username == "" || trim($username) != $username) 
+                    $_SESSION["errors"]["signUp"]["username"]["error"] = "Invalid username";
+                    
+            if(filter_var($password, FILTER_SANITIZE_STRING) != $password ||
+                $password == "" || trim($password) != $password)
+                    $_SESSION["errors"]["signUp"]["password"]["error"] = "Invalid password";
+                    
+            if(!filter_var($email, FILTER_VALIDATE_EMAIL) ||
+                $email == "" || trim($email) != $email)
+                    $_SESSION["errors"]["signUp"]["email"]["error"] = "Invalid email";
+                    
             if($password != $confPassword)
-                $error[] = "Passwords do not match";
-            if(count($error) > 0)
-                return $error;
+                $_SESSION["errors"]["signUp"]["confPassword"]["error"] = "Passwords do not match";
+                
+            if(ISSET($_SESSION["errors"]["signUp"])) {
+                $_SESSION["errors"]["signUp"]["email"]["value"] = $email;
+                $_SESSION["errors"]["signUp"]["username"]["value"] = $username;
+                return "FAIL";
+            }
             
             $conn = new Mongo();
             $db = $conn->fitspo;
             $collection = $db->users;
             
             if($collection->findOne(array("username" => $username)) != null){
-                $error[] = "Username already in use";
-                return $error;
+                $_SESSION["errors"]["signUp"]["username"] = "Username already in use";
+                $_SESSION["errors"]["signUp"]["email"]["value"] = $email;
+                $_SESSION["errors"]["signUp"]["username"]["value"] = $username;
+                return "FAIL";
             }
             
             
@@ -99,17 +111,17 @@
             $this->runUpdateQuery($query);
         }
 
-	function addFavoritPicture($pictureId) {
+        function addFavoritPicture($pictureId) {
             $query = array('$push' => array("favoritePictures" => $pictureId));
             $this->runUpdateQuery($query);
         }
 
-	function addHighFive() {
+        function addHighFive() {
             $query = array( '$inc' => array("highFives" => 1));
             $this->runUpdateQuery($query);
         }
 
-	function changeNick($name) {
+        function changeNick($name) {
             $query = array('$set' => array("nick" => $name));
             $this->runUpdateQuery($query);   
         }

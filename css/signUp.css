@@ -5,10 +5,26 @@
 }
 .fieldValue {
     text-align: left;
+    padding-left: 10px;
 }
 .fieldValue input{
     border:1px solid #0464F4;
     font-size: 24px;
     color:#0464F4;
+    padding:3px;
 }
-
+#submit {
+    color:#fff;
+    background-color:#0464F4;
+    margin-top:10px;
+}
+#submit:hover {
+    color:#ffa100;
+}
+@media (min-width: 1200px) {
+    #content {
+        width:600px;
+        margin-left:auto;
+        margin-right:auto;
+    }
+}
