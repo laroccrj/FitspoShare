@@ -36,9 +36,9 @@
             
             $collection->insert($user);
             
-            $insertedUser = $collection->findOne(array( "username" => $user["username"]));
+            $user = $collection->findOne(array( "username" => $user["username"]));
 
-            $this->id = $insertedUser["_id"];
+            $this->id = $user["_id"];
             $this->updateInfo();
             $this->loggedIn = true;
             
@@ -60,21 +60,6 @@
             $this->highFives = $user["highFives"];
             $this->pictures = $user["pictures"];
             $this->favoritePictures = $user["favoritePictures"];
-            
-            $conn->close();
-        }
-        
-        function addPicture($pictureId) {
-            $query = array("_id" => new MongoId($this->id), "$push" => 
-                    array("pictures" => $pictureId));
-            
-            $conn = new Mongo();
-            $db = $conn->fitspo;
-            $collection = $db->users;
-            
-            $collection->update($query);
-            
-            $this->updateInfo();
             
             $conn->close();
         }
