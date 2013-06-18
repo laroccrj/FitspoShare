@@ -1,0 +1,34 @@
+user {
+
+    username
+    nickname
+    password
+    email
+    profile picture
+    high fives
+    favorite pictures {
+        picture id
+    }
+    picture {
+        picture id
+    }
+
+}
+pictures {
+
+    author id
+    title
+    high fives
+    views
+    favorites
+    date
+    comments {
+        commenter id
+        comment
+        date
+        replies {
+            same as comments with a replies field, don't want to type to infinity
+        }
+    }
+
+}
