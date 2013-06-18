@@ -6,7 +6,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Fitspo Share</title>
+        <title>Fitspo Army</title>
         <link rel="stylesheet" href="css/reset.css" />
         <link rel="stylesheet" href="css/main.css" />
         <link rel="stylesheet" href="css/top.css" />

@@ -13,20 +13,21 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Fitspo Share</title>
+        <title>Fitspo Army</title>
         <link rel="stylesheet" href="css/reset.css" />
         <link rel="stylesheet" href="css/main.css" />
         <link rel="stylesheet" href="css/top.css" />
         <link rel="stylesheet" href="css/nav.css" />
         <link rel="stylesheet" href="css/image.css" />
         <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-        <script src="arrow.js"></script>
+        <script src="js/arrow.js"></script>
+        <script src="js/inputOverlay.js"></script>
     </head>
     <body>
         <div id="container">
             <?php include "pieces/title.php" ?>
             <div id="content">
-                <h1>The title of the image</h1>
+                <h1><?php echo $image->title; ?></h1>
                 <div id="imageContainer">
                     <div id="image">
                         <img src="images/uploads/<?php echo $image->path; ?>">

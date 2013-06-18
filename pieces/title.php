@@ -1,7 +1,7 @@
 <div id="top">
     <a href="index.php">
         <div id="title">
-            Fitspo Share
+            Fitspo Army
         </div>
     </a>
     <div id="access">
