@@ -1,0 +1,33 @@
+#imageContainer {
+    position: relative;
+    width:100%;
+    overflow: hidden;
+}
+#image {
+    margin-left: 10%;
+    width:80%;
+}
+#image img {
+    width:100%;
+    height:auto;
+}
+.arrow {
+    width:10%;
+    position:absolute;
+    top:0px;
+}
+.arrow img{
+    width: 100%;
+    height: auto;
+}
+#rightArrow {
+    right:0px;
+}
+#leftArrow img {
+    -moz-transform: scaleX(-1);
+    -o-transform: scaleX(-1);
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+    filter: FlipH;
+    -ms-filter: "FlipH";
+}
