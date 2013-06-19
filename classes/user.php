@@ -15,7 +15,19 @@
             $this->id = $id;
         }
         
-        function signUp($username, $email, $password, $confPassword) {
+        private function runUpdateQuery($query) {
+			$conn = new Mongo();
+            $db = $conn->fitspo;
+            $collection = $db->users;
+			
+            $collection->update(array("_id" => new MongoId($this->id)), $query);
+            
+            $this->updateInfo();
+            
+            $conn->close();
+		}
+		
+		function signUp($username, $email, $password, $confPassword) {
             //TODO: Error checking
             
             //If we don't have errors, let's sign up!
@@ -46,7 +58,6 @@
         }
         
         function updateInfo() {
-            //TODO: get user information and apply it to variables
             $conn = new Mongo();
             $db = $conn->fitspo;
             $collection = $db->users;
@@ -62,20 +73,31 @@
             $this->favoritePictures = $user["favoritePictures"];
             
             $conn->close();
+			
         }
         
         function addPicture($pictureId) {
-            $query = array("_id" => new MongoId($this->id), "$push" => 
-                    array("pictures" => $pictureId));
+            $query = array('$push' => array("pictures" => $pictureId));
+			
+            $this->runUpdateQuery($query);
+        }
+		
+		function addFavoritPicture($pictureId) {
+            $query = array('$push' => array("favoritePictures" => $pictureId));
             
-            $conn = new Mongo();
-            $db = $conn->fitspo;
-            $collection = $db->users;
+            $this->runUpdateQuery($query);
+        }
+		
+		function addHighFive() {
+            $query = array( '$inc' => array("highFives" => 1));
             
-            $collection->update($query);
+            $this->runUpdateQuery($query);
+        }
+		
+		function changeNick($name) {
+            $query = array('$set' => array("nick" => $name));
             
-            $this->updateInfo();
+            $this->runUpdateQuery($query);
             
-            $conn->close();
         }
     }
