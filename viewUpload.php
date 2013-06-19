@@ -40,23 +40,25 @@
                             </div>
                         </a>
                     <?php } ?>
-                    <?php if($image->getNextId() != null) { ?>
-                        <a href="viewUpload.php?upload=<?php echo $image->getNextId(); ?>">
-                            <div id="rightArrow" class="arrow">
+                    
+                    <div id="rightArrow" class="arrow">
+                        <?php if($image->getNextId() != null) { ?>
+                            <a href="viewUpload.php?upload=<?php echo $image->getNextId(); ?>">
                                 <img src="images/static/arrow.png">
-                            </div>
-                        </a>
-                    <?php } ?>
-                    <?php
-                        if(ISSET($_SESSION["user"]) &&
-                                $_SESSION["user"]->loggedIn &&
-                                $image->authorId != $_SESSION["user"]->id &&
-                                !$_SESSION["user"]->checkHighFive($image->number)){
-                    ?>
-                    <div class="highFive"><a href="actions/highFive.php?image=<?php echo $image->id; ?>">High Five!</a></div>
-                    <?php
-                        }
-                    ?>
+                            </a>
+                        <?php } ?>
+                        <br />
+                        <?php
+                            if(ISSET($_SESSION["user"]) &&
+                                    $_SESSION["user"]->loggedIn &&
+                                    $image->authorId != $_SESSION["user"]->id &&
+                                    !$_SESSION["user"]->checkHighFive($image->number)){
+                        ?>
+                        <div id="highFive"><a href="actions/highFive.php?image=<?php echo $image->id; ?>"><image src="images/static/newHighFive.png"></a></div>
+                        <?php
+                            }
+                        ?>
+                    </div>
                 </div>
                 <div id="uploadInfo">
                     <div class="author">
@@ -65,7 +67,7 @@
                         </div>
                         <?php echo $image->user->nickname; ?> 
                     </div>
-                    <div class="highFives"><span class="number"><?php echo $image->highFives; ?></span> High Fives</div>
+                    <div class="highFives"><?php echo $image->highFives; ?><img src="images/static/highfive.png"></div>
                 </div>
                 <div>
                     <?php

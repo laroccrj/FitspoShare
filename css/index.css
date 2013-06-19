@@ -38,3 +38,10 @@
     bottom: 20px;
     right:20px;
 }
+#content .upload .highFives img{
+    width:24px;
+    height:auto;
+    margin-left: 5px;
+    float: right;
+    margin-top: -2px;
+}

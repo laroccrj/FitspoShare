@@ -23,6 +23,11 @@
 #rightArrow {
     right:0px;
 }
+#highFive {
+    right:0px;
+    width:75%;
+    margin-left:15%;
+}
 #leftArrow img {
     -moz-transform: scaleX(-1);
     -o-transform: scaleX(-1);
@@ -126,6 +131,9 @@
     margin-bottom: 20px;
     padding-bottom: 20px;
     border-bottom: 1px solid #ccc;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #ccc;
 }
 #uploadInfo .author{
     color:#ffa100;
@@ -143,18 +151,23 @@
     overflow:hidden;
     margin-right: 10px;
     margin-top: -4px;
+    border: 3px solid #0464F4;
+    border-radius: 10px;
 }
 #uploadInfo .author .profilePic img{
     width:48px;
     height:auto;
 }
 #uploadInfo .highFives {
-    color:#0464F4;
-    font-size:24px;
+    color:#00cc00;
+    font-size:48px;
     position:absolute;
-    top:0px;
+    top:20px;
     right:0px;
 }
-#uploadInfo .highFives .number {
-    color:#00CC00;
+#uploadInfo .highFives img {
+    width:48px;
+    height:48px;
+    float:right;
+    margin-left: 10px;
 }
