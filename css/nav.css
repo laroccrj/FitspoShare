@@ -1,0 +1,20 @@
+#nav {
+    position:relative;
+    height:36px;
+}
+#nav .link {
+    width: 20%;
+    outline: 1px solid #fff;
+    background-color: #0464F4;
+    float:left;
+    color: #fff;
+    padding-top:5px;
+    padding-bottom:5px;
+    font-weight:bold;
+    font-size:24px;
+    text-align: center;
+}
+#nav .link:hover {
+    color:#ffa100;
+}
+

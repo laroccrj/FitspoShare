@@ -1,0 +1,16 @@
+#top { 
+    width:100%;
+    position:relative;
+    margin-bottom:10px;
+}
+#title {
+    font-size: 48px;
+    font-weight:bold;
+    left:5%;
+    color:#0464F4;
+}
+#login {
+    position:absolute;
+    top:0px;
+    right:0px;
+}

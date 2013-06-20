@@ -1,26 +1,29 @@
-/* 
-    Document   : main
-    Created on : Jun 17, 2013, 1:53:03 PM
-    Author     : rob
-    Description:
-        Purpose of the stylesheet follows.
-*/
+@media (min-width: 1200px) {
+    #container{
+        width:960px;
+        margin-left:auto;
+        margin-right:auto;
+    }
+}
 
-#top { 
-    background-color: #0464F4;
-    width:100%;
-    height:50px;
-    position:relative;
-    color:#ffffff;
-}
-#title {
-    position:absolute;
-    top:50%;
-    height:40px;
-    margin-top: -16px;
-    font-size: 32px;
+body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    font-weight:bold;
-    left:25%;
 }
+
+#content {
+    margin-top: 20px;
+}
+
+#content h1{
+    color: #ffa100;
+    font-weight:bold;
+    font-size:36px;
+    margin-bottom: 10px;
+}
+#content h1 .subheader{
+    color: #0464F4;
+    font-size:24px;
+    font-weight:normal;
+}
+
 

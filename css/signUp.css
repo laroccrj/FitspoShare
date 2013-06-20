@@ -1,0 +1,14 @@
+.fieldName {
+    text-align: right;
+    font-size: 24px;
+    color:#ffa100;
+}
+.fieldValue {
+    text-align: left;
+}
+.fieldValue input{
+    border:1px solid #0464F4;
+    font-size: 24px;
+    color:#0464F4;
+}
+

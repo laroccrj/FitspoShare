@@ -96,26 +96,26 @@
         
         function addPicture($pictureId) {
             $query = array('$push' => array("pictures" => $pictureId));
-
             $this->runUpdateQuery($query);
         }
 
 	function addFavoritPicture($pictureId) {
             $query = array('$push' => array("favoritePictures" => $pictureId));
-            
             $this->runUpdateQuery($query);
         }
 
 	function addHighFive() {
             $query = array( '$inc' => array("highFives" => 1));
-            
             $this->runUpdateQuery($query);
         }
 
 	function changeNick($name) {
             $query = array('$set' => array("nick" => $name));
-            
-            $this->runUpdateQuery($query);
-            
+            $this->runUpdateQuery($query);   
+        }
+        
+        function changeProfilePic($picture) {
+            $query = array('$set' => array("profilePicture" => $picture));
+            $this->runUpdateQuery($query);   
         }
     }
