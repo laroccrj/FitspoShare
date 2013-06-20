@@ -15,7 +15,19 @@
             $this->id = $id;
         }
         
-        function signUp($username, $email, $password, $confPassword) {
+        private function runUpdateQuery($query) {
+            $conn = new Mongo();
+            $db = $conn->fitspo;
+            $collection = $db->users;
+
+            $collection->update(array("_id" => new MongoId($this->id)), $query);
+
+            $this->updateInfo();
+
+            $conn->close();
+        }
+
+	function signUp($username, $email, $password, $confPassword) {
             $error = array();
             
             if(filter_var($username, FILTER_SANITIZE_STRING) != $username)
@@ -52,19 +64,18 @@
             
             $collection->insert($user);
             
-            $user = $collection->findOne(array( "username" => $user["username"]));
+            $newUser = $collection->findOne(array( "username" => $user["username"]));
 
-            $this->id = $user["_id"];
+            $this->id = $newUser["_id"];
             $this->updateInfo();
             $this->loggedIn = true;
             
             $conn->close();
             
-            return = "SUCCESS";
+            return "SUCCESS";
         }
         
         function updateInfo() {
-            //TODO: get user information and apply it to variables
             $conn = new Mongo();
             $db = $conn->fitspo;
             $collection = $db->users;
@@ -80,5 +91,31 @@
             $this->favoritePictures = $user["favoritePictures"];
             
             $conn->close();
+
+        }
+        
+        function addPicture($pictureId) {
+            $query = array('$push' => array("pictures" => $pictureId));
+
+            $this->runUpdateQuery($query);
+        }
+
+	function addFavoritPicture($pictureId) {
+            $query = array('$push' => array("favoritePictures" => $pictureId));
+            
+            $this->runUpdateQuery($query);
+        }
+
+	function addHighFive() {
+            $query = array( '$inc' => array("highFives" => 1));
+            
+            $this->runUpdateQuery($query);
+        }
+
+	function changeNick($name) {
+            $query = array('$set' => array("nick" => $name));
+            
+            $this->runUpdateQuery($query);
+            
         }
     }
