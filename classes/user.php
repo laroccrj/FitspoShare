@@ -66,7 +66,7 @@
             $user = array(
                         "username" => $username,
                         "email" => $email,
-                        "password" => $password,
+                        "password" => md5($password),
                         "nick" => $username,
                         "profilePicture" => "default.png",
                         "highFives" => 0,
