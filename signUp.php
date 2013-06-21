@@ -1,8 +1,6 @@
 <?php
     include("basicIncludes.php");
     session_start();
-    
-    $error = new Error();
 ?>
 <!DOCTYPE html>
 <html>
@@ -65,6 +63,7 @@
                             </td>
                             <td class="fieldValue">
                                 <input type="submit" name="submit" id="submit" value="Sign Up">
+                                <?php $error->deleteErrors("signUp"); ?>
                             </td>
                         </tr>
                     </table>

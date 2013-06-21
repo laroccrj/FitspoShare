@@ -15,6 +15,29 @@
             $this->id = $id;
         }
         
+        function login($username, $password) {
+            $conn = new Mongo();
+            $db = $conn->fitspo;
+            $collection = $db->users;
+            
+            $user = $collection->findOne(array("username" => $username));
+            
+            if($user != null){
+                if(md5($password) == $user["password"]){
+                    $this->loggedIn = true;
+                    $this->id = $user["_id"];
+                    
+                    $this->updateInfo();
+                    $conn->close();
+                    return "SUCCESS";
+                }
+            } 
+            var_dump($username);
+            $_SESSION["errors"]["login"]["username"]["error"] = "Invalid login";
+            $conn->close();
+            return "FAIL";
+        }
+        
         private function runUpdateQuery($query) {
             $conn = new Mongo();
             $db = $conn->fitspo;
@@ -28,7 +51,6 @@
         }
 
         function signUp($username, $email, $password, $confPassword) {
-            unset($_SESSION["errors"]["signUp"]);
             
             if(filter_var($username, FILTER_SANITIZE_STRING) != $username ||
                 $username == "" || trim($username) != $username) 
@@ -56,7 +78,7 @@
             $collection = $db->users;
             
             if($collection->findOne(array("username" => $username)) != null){
-                $_SESSION["errors"]["signUp"]["username"] = "Username already in use";
+                $_SESSION["errors"]["signUp"]["username"]["error"] = "Username already in use";
                 $_SESSION["errors"]["signUp"]["email"]["value"] = $email;
                 $_SESSION["errors"]["signUp"]["username"]["value"] = $username;
                 return "FAIL";

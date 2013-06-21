@@ -12,4 +12,9 @@
                 echo $_SESSION["errors"][$form][$field]["value"];
         }
         
+        function deleteErrors($form){
+            if(ISSET($_SESSION["errors"][$form]))
+                unset($_SESSION["errors"][$form]);
+        }
+        
     }
