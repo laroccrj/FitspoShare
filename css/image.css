@@ -1,0 +1,12 @@
+#imageContainer {
+    position: relative;
+    width:100%;
+}
+#image {
+    margin-left: 10%;
+    width:80%;
+}
+#image img {
+    width:100%;
+    height:auto;
+}
