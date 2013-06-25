@@ -1,6 +1,7 @@
 <?php
+    include 'counter.php';
     
-    class Picture {
+    class Upload {
         public $id;
         public $authorId;
         public $title;
@@ -9,14 +10,16 @@
         public $favorites;
         public $date;
         public $comments;
-        public $name;
+        public $type;
+        public $path;
         public $replies;
+        public $number;
         
         function __construct($id) {
             $this->id = $id;
             
             if($id != NULL)
-                $this->updateInfo ();
+                $this->updateInfo();
         }
         
         private function runUpdateQuery($query) {
@@ -31,12 +34,15 @@
             $conn->close();
         }
 
-        function newPicture($userId, $title, $name) {
+        function newUpload($userId, $title, $path, $type) {
             $conn = new Mongo();
             $db = $conn->fitspo;
             $collection = $db->pictures;
             
-            $picture = array(
+            $counter = new Counter("uploads");
+            $number = $counter->getNext();
+            
+            $upload = array(
                         "authorId" => $userId,
                         "title" => $title,
                         "highFives" => 0,
@@ -44,15 +50,17 @@
                         "favorites" => 0,
                         "date" => date("U"),
                         "comments" => array(),
-                        "name" => $name,
-                        "replies" => array()
+                        "type" => $type,
+                        "path" => $path,
+                        "replies" => array(),
+                        "number" => $number
                     );
             
-            $collection->insert($picture);
+            $collection->insert($upload);
             
-            $newPicture = $collection->findOne(array( "name" => $picture["name"]));
+            $newUpload = $collection->findOne(array( "number" => $upload["number"]));
 
-            $this->id = $newPicture["_id"];
+            $this->id = $newUpload["_id"];
             $this->updateInfo();
             
             $conn->close();
@@ -63,17 +71,19 @@
             $db = $conn->fitspo;
             $collection = $db->pictures;
             $mId = new MongoId($this->id);
-            $picture = $collection->findOne(array( "_id" => $mId));
+            $upload = $collection->findOne(array( "_id" => $mId));
             
-            $this->authorId = $picture["authorId"];
-            $this->title = $picture["title"];
-            $this->highFives = $picture["highFives"];
-            $this->views = $picture["views"];
-            $this->favorites = $picture["favorites"];
-            $this->date = $picture["date"];
-            $this->comments = $picture["comments"];
-            $this->name = $picture["name"];
-            $this->replies = $picture["replies"];
+            $this->authorId = $upload["authorId"];
+            $this->title = $upload["title"];
+            $this->highFives = $upload["highFives"];
+            $this->views = $upload["views"];
+            $this->favorites = $upload["favorites"];
+            $this->date = $upload["date"];
+            $this->comments = $upload["comments"];
+            $this->type = $upload["type"];
+            $this->path = $upload["path"];
+            $this->replies = $upload["replies"];
+            $this->number = $upload["number"];
             
             $conn->close();
 
