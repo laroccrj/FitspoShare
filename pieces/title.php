@@ -3,6 +3,11 @@
         <div id="title">
             Fitspo Army
         </div>
+        <?php if(ISSET($_SESSION["user"]) && $_SESSION["user"]->loggedIn){ ?>
+            <div id="upload">
+                <a href="upload.php">Upload</a>
+            </div>
+        <?php }?>
     </a>
     <div id="access">
         <?php if(ISSET($_SESSION["user"]) && $_SESSION["user"]->loggedIn){ ?>

@@ -1,0 +1,36 @@
+#uploadForm {
+    position:relative;
+    width:100%;
+}
+#form {
+    width:30%;
+}
+#form input {
+    width:100%;
+    border:1px solid #0464F4;
+    color:#0464F4;
+    box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    padding:3px;
+}
+#form input[type=text], #form input[type=submit]{
+    font-size: 24px;
+}
+#form input[type=submit] {
+    color:#fff;
+    background-color:#0464F4;
+    margin-top:10px;
+}
+#form input[type=submit]:hover {
+    color:#ffa100;
+}
+#preview {
+    position: absolute;
+    top:0px;
+    width:65%;
+    margin-left: 35%;
+}
+#preview img {
+    width:100%;
+    height:auto;
+}

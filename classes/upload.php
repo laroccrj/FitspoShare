@@ -25,7 +25,7 @@
         private function runUpdateQuery($query) {
             $conn = new Mongo();
             $db = $conn->fitspo;
-            $collection = $db->pictures;
+            $collection = $db->uploads;
 
             $collection->update(array("_id" => new MongoId($this->id)), $query);
 
@@ -37,7 +37,7 @@
         function newUpload($userId, $title, $path, $type) {
             $conn = new Mongo();
             $db = $conn->fitspo;
-            $collection = $db->pictures;
+            $collection = $db->uploads;
             
             $counter = new Counter("uploads");
             $number = $counter->getNext();
@@ -48,7 +48,7 @@
                         "highFives" => 0,
                         "views" => 0,
                         "favorites" => 0,
-                        "date" => date("U"),
+                        "date" => (int)date("U"),
                         "comments" => array(),
                         "type" => $type,
                         "path" => $path,
@@ -69,7 +69,7 @@
         function updateInfo() {
             $conn = new Mongo();
             $db = $conn->fitspo;
-            $collection = $db->pictures;
+            $collection = $db->uploads;
             $mId = new MongoId($this->id);
             $upload = $collection->findOne(array( "_id" => $mId));
             
@@ -87,6 +87,59 @@
             
             $conn->close();
 
+        }
+        
+        function getPrevId() {
+            $conn = new Mongo();
+            $db = $conn->fitspo;
+            $collection = $db->uploads;
+            $prev = null;
+            $found = false;
+            
+            $same = $collection->find(array("highFives" => $this->highFives));
+            
+            while($same->hasNext() && !$found) {
+                $doc = $same->getNext();
+                if($doc["_id"] != $this->id)
+                    $prev = $doc;
+                else
+                    $found = true;
+            }
+            
+
+            
+            if($prev === null)
+                $prev = $collection->findOne(array("highFives" => array('$gt' => $this->highFives)));
+            
+            $conn->close();
+            
+            return $prev["_id"];
+        }
+        
+        function getNextId() {
+            $conn = new Mongo();
+            $db = $conn->fitspo;
+            $collection = $db->uploads;
+            $next = null;
+            $found = false;
+            
+            $same = $collection->find(array("highFives" => $this->highFives));
+            
+            while($same->hasNext() && !$found) {
+                $doc = $same->getNext();
+                if($doc["_id"] == $this->id)
+                    $found = true;
+            }
+            
+            if($found && $same->hasNext())
+                $next = $same->getNext();
+            
+            if($next === null)
+                $next = $collection->findOne(array("highFives" => array('$lt' => $this->highFives)));
+            
+            $conn->close();
+            
+            return $next["_id"];
         }
         
         function addComment($id, $comment) {

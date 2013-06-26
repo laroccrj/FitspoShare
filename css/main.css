@@ -17,6 +17,7 @@ body {
 
 #content {
     margin-top: 20px;
+    position:relative;
 }
 
 #content h1{
@@ -25,7 +26,7 @@ body {
     font-size:36px;
     margin-bottom: 10px;
     padding-bottom:10px;
-    border-bottom: 1px solid #dddddd;
+    border-bottom: 1px solid #ccc;
 }
 #content h1 .subheader{
     color: #0464F4;

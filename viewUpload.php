@@ -3,8 +3,8 @@
     session_start();
     require_once 'classes/upload.php';
     
-    if(isset($_GET["image"]))
-        $image = new Upload($_GET["image"]);
+    if(isset($_GET["upload"]))
+        $image = new Upload($_GET["upload"]);
     else
         header("Location: index.php");
         
@@ -32,12 +32,20 @@
                     <div id="image">
                         <img src="images/uploads/<?php echo $image->path; ?>">
                     </div>
-                    <div id="leftArrow" class="arrow">
-                        <img src="images/static/arrow.png">
-                    </div>
-                    <div id="rightArrow" class="arrow">
-                        <img src="images/static/arrow.png">
-                    </div>
+                    <?php if($image->getPrevId() != null) { ?>
+                        <a href="viewUpload.php?upload=<?php echo $image->getPrevId(); ?>">
+                            <div id="leftArrow" class="arrow">
+                                <img src="images/static/arrow.png">
+                            </div>
+                        </a>
+                    <?php } ?>
+                    <?php if($image->getNextId() != null) { ?>
+                        <a href="viewUpload.php?upload=<?php echo $image->getNextId(); ?>">
+                            <div id="rightArrow" class="arrow">
+                                <img src="images/static/arrow.png">
+                            </div>
+                        </a>
+                    <?php } ?>
                 </div>
             </div>
         </div>

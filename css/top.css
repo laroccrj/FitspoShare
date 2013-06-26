@@ -8,6 +8,7 @@
     font-weight:bold;
     left:5%;
     color:#0464F4;
+    display:inline;
 }
 #access {
     position:absolute;
@@ -24,6 +25,13 @@
 }
 #logout:hover {
     color: #ffa100;
+}
+#upload {
+    position: relative;
+    padding:10px;
+    color: #ffa100;
+    font-weight:bold;
+    display:inline;
 }
 #info {
     position: relative;
