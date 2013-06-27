@@ -28,5 +28,7 @@
     
     $picture->newUpload($_SESSION["user"]->id, $title, $name, "picture");
     
+    $_SESSION["user"]->addPicture($picture->id);
+    
     header("Location: ../viewUpload.php?upload=".$picture->id);
     

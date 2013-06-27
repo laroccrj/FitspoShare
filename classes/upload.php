@@ -14,6 +14,7 @@
         public $path;
         public $replies;
         public $number;
+        public $user;
         
         function __construct($id) {
             $this->id = $id;
@@ -84,6 +85,7 @@
             $this->path = $upload["path"];
             $this->replies = $upload["replies"];
             $this->number = $upload["number"];
+            $this->user = new User($this->authorId);
             
             $conn->close();
 

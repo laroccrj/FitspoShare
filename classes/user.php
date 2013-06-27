@@ -10,9 +10,13 @@
         public $favoritePictures;
         public $pictures;
         public $highFives;
+        public $highFiveHist;
         
         function __construct($id) {
             $this->id = $id;
+            
+            if($id != NULL)
+                $this->updateInfo();
         }
         
         function login($username, $password) {
@@ -43,7 +47,8 @@
             $db = $conn->fitspo;
             $collection = $db->users;
 
-            $collection->update(array("_id" => new MongoId($this->id)), $query);
+            $collection->update(array("_id" => new MongoId($this->id)), $query,
+                    array("upsert" => true));
 
             $this->updateInfo();
 
@@ -123,6 +128,8 @@
             $this->highFives = $user["highFives"];
             $this->pictures = $user["pictures"];
             $this->favoritePictures = $user["favoritePictures"];
+            if(isset($user["highFiveHist"]))
+                $this->highFiveHist = $user["highFiveHist"];
             
             $conn->close();
 
@@ -141,6 +148,17 @@
         function addHighFive() {
             $query = array( '$inc' => array("highFives" => 1));
             $this->runUpdateQuery($query);
+        }
+        
+        function addHighFiveHistory($uploadNumber) {
+            $query = array('$push' => array("highFiveHist" => $uploadNumber));
+            $this->runUpdateQuery($query);
+        }
+        
+        function checkHighFive($uploadNumber) {
+            if($this->highFiveHist == null) return false;
+            
+            return in_array($uploadNumber, $this->highFiveHist);
         }
 
         function changeNick($name) {

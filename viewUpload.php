@@ -47,6 +47,20 @@
                         </a>
                     <?php } ?>
                 </div>
+                <div id="uploadInfo">
+                    Posted By: <?php echo $image->user->nickname; ?> <br />
+                    High Fives: <?php echo $image->highFives; ?><br />
+                    <?php
+                        if(ISSET($_SESSION["user"]) &&
+                                $_SESSION["user"]->loggedIn &&
+                                $image->authorId != $_SESSION["user"]->id &&
+                                !$_SESSION["user"]->checkHighFive($image->number)){
+                    ?>
+                        <a href="actions/highFive.php?image=<?php echo $image->id; ?>">High Five!</a><br />
+                    <?php
+                        }
+                    ?>
+                </div>
             </div>
         </div>
     </body>
