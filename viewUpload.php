@@ -61,6 +61,89 @@
                         }
                     ?>
                 </div>
+                <div>
+                    <?php
+                        if(ISSET($_SESSION["user"]) && $_SESSION["user"]->loggedIn){
+                    ?>
+                        <div id="newComment">
+                            <form action="actions/newComment.php" method="post">
+                                <input type="hidden" name="id" value="<?php echo $image->id; ?>">
+                                <div class="input">
+                                    <textarea class="overlayed" name="comment"></textarea>
+                                    <div class="overlay" unselectable="on">
+                                        Leave a comment...
+                                    </div>
+                                </div>
+                                <input type="submit" value="Comment">
+                            </form>
+                        </div>
+                    <?php
+                        } else {
+                    ?>
+                        <div id="newComment">You must login or <a href="signUp.php">sign-up</a> to comment</div>
+                    <?php } ?>
+                    <?php foreach($image->comments as $comment){ 
+                                $user = new User($comment["userId"]);
+                    ?>
+                        <div class="comment">
+                            <div class="name">
+                                <div class="profilePic">
+                                    <img src="images/profile/<?php echo $user->profilePicture; ?>" >
+                                </div>
+                                <?php echo $user->nickname; ?>
+                            </div>
+                            <div class="content"><?php echo $comment["comment"]; ?></div>
+                            <div class="date">
+                                <?php 
+                                    $epoch = $comment["date"];
+                                    $dt = new DateTime("@$epoch");
+                                    echo $dt->format('H:i - d M, Y'); 
+                                ?>
+                            </div>
+                            <?php foreach($image->getReplies($comment["number"]) as $reply){ 
+                                        $user = new User($reply["userId"]);
+                            ?>
+                                <div class="reply">
+                                    <div class="name">
+                                        <div class="profilePic">
+                                            <img src="images/profile/<?php echo $user->profilePicture; ?>" >
+                                        </div>
+                                        <?php echo $user->nickname; ?>
+                                    </div>
+                                    <div class="content"><?php echo $reply["comment"]; ?></div>
+                                    <div class="date">
+                                        <?php 
+                                            $epoch = $reply["date"];
+                                            $dt = new DateTime("@$epoch");
+                                            echo $dt->format('H:i - d M, Y'); 
+                                        ?>
+                                    </div>
+                                </div>
+                            <?php } ?>   
+                            <?php
+                                if(ISSET($_SESSION["user"]) && $_SESSION["user"]->loggedIn){
+                            ?>
+                                <div class="newReply">
+                                    <form action="actions/newReply.php" method="post">
+                                        <input type="hidden" name="id" value="<?php echo $image->id; ?>">
+                                        <input type="hidden" name="number" value="<?php echo $comment["number"]; ?>">
+                                        <div class="input">
+                                            <textarea class="overlayed" name="comment"></textarea>
+                                            <div class="overlay" unselectable="on">
+                                                Leave a reply...
+                                            </div>
+                                        </div>
+                                        <input type="submit" value="Reply">
+                                    </form>
+                                </div>
+                            <?php
+                                } else {
+                            ?>
+                                <div id="newComment">You must login or <a href="signUp.php">sign-up</a> to reply</div>
+                            <?php } ?>
+                        </div>
+                    <?php } ?>    
+                </div>
             </div>
         </div>
     </body>

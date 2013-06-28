@@ -149,7 +149,7 @@
                 "number" => count($this->comments),
                 "userId" => $id,
                 "comment" => $comment,
-                "date" => date("U"),
+                "date" => date("U")
             );
             $query = array('$push' => array("comments" => $comment));
             $this->runUpdateQuery($query);
@@ -180,6 +180,16 @@
             $query = array( '$inc' => array("views" => 1));
             $this->runUpdateQuery($query);
         }
-
+        
+        function getReplies($number) {
+            $replies = array();
+            
+            foreach($this->replies as $reply){
+                if($reply["reply"] == $number)
+                    array_push($replies, $reply);
+            }
+            
+            return $replies;
+        }
         
     }

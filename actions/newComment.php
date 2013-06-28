@@ -7,13 +7,16 @@
     if(!ISSET($_SESSION["user"]) || !$_SESSION["user"]->loggedIn)
         header('Location: ' . $_SERVER['HTTP_REFERER']);
     
-    if(!ISSET($_GET["image"]))
+    if(!ISSET($_POST["id"]))
         header('Location: ' . $_SERVER['HTTP_REFERER']);
+    
+    $comment = $_POST["comment"];
+    //TODO: Check if there is something wrong with comment
     
     $conn = new Mongo();
     $db = $conn->fitspo;
     $collection = $db->uploads;
-    $mId = new MongoId($_GET["image"]);
+    $mId = new MongoId($_POST["id"]);
     $upload = $collection->findOne(array( "_id" => $mId));
     
     if($upload == null){
@@ -21,14 +24,8 @@
         header('Location: ' . $_SERVER['HTTP_REFERER']);
     }
     
-    $image = new Upload($_GET["image"]);
+    $image = new Upload($_POST["id"]);
     
-    if($_SESSION["user"]->checkHighFive($image->number))
-        header('Location: ' . $_SERVER['HTTP_REFERER']);
-    
-    $image->addHighFive();
-    $_SESSION["user"]->addHighFiveHistory($image->number);
-    $image->user->addHighFive();
+    $image->addComment($_SESSION["user"]->id, $comment);
     
     header('Location: ' . $_SERVER['HTTP_REFERER']);
-?>

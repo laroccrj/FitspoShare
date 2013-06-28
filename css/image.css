@@ -31,3 +31,93 @@
     filter: FlipH;
     -ms-filter: "FlipH";
 }
+#newComment {
+    width: 65%;
+    margin-left: 5%;
+    margin-bottom: 20px;
+}
+#newComment .input {
+    position:relative;
+}
+#newComment .input textarea{
+    background: #fff;
+    padding:3px;
+    border:1px solid #0464F4;
+    color:#0464F4;
+    width:100%;
+    height:100px;
+    font-size: 18px;
+} 
+#newComment .input .overlay{
+    position:absolute;
+    top:5px;
+    left:5px;
+    color:#aaaaaa;
+    font-size: 18px;
+}
+.comment {
+    margin-bottom: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #ccc;
+    width:65%;
+    margin-left: 5%;
+}
+.comment .name {
+    color: #0464F4;
+    font-size:24px;
+    margin-bottom: 10px;
+}
+.comment .content {
+    margin-bottom: 10px;
+    width: 95%;
+    margin-left: 5%;
+}
+.comment .date {
+    color: #ffa100;
+    font-size: 12px;
+    text-align: right;
+}
+.comment .reply {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top:1px solid #ccc;
+    width: 90%;
+    margin-left: 10%;
+}
+.comment .newReply {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top:1px solid #ccc;
+    width: 90%;
+    margin-left: 10%;
+    margin-top: 10px;
+}
+.comment .newReply .input {
+    position:relative;
+}
+.comment .newReply .input textarea{
+    background: #fff;
+    padding:3px;
+    border:1px solid #0464F4;
+    color:#0464F4;
+    width:100%;
+    height:75px;
+    font-size: 18px;
+} 
+.comment .newReply .input .overlay{
+    position:absolute;
+    top:5px;
+    left:5px;
+    color:#aaaaaa;
+}
+.comment .name .profilePic{
+    float:left;
+    width:24px;
+    height:24px;
+    overflow:hidden;
+    margin-right: 10px;
+}
+.comment .name .profilePic img{
+    width:24px;
+    height:auto;
+}
