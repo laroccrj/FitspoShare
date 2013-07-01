@@ -1,7 +1,7 @@
 <div id="top">
     <a href="index.php">
         <div id="title">
-            Fitspo Army
+            Fitfam Strong
         </div>
         <?php if(ISSET($_SESSION["user"]) && $_SESSION["user"]->loggedIn){ ?>
             <div id="upload">
