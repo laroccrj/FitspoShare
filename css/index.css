@@ -8,6 +8,7 @@
     box-sizing:border-box;
     -moz-box-sizing:border-box;
     margin-bottom: 20px;
+    position:relative;
 }
 #content .upload:hover {
     box-shadow: 3px 3px 3px #ccc;
@@ -29,3 +30,11 @@
     margin-bottom: 5px;
     color: #0464F4;
 }    
+#content .upload .highFives {
+    color:#00CC00;
+    font-size:24px;
+    text-align: right;
+    position:absolute;
+    bottom: 20px;
+    right:20px;
+}

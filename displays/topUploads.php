@@ -27,6 +27,7 @@
                 <div class="image">
                     <img src="images/uploads/<?php echo $value["path"]; ?>">
                 </div>
+                <div class="highFives"><?php echo $value["highFives"]; ?></div>
             </div>
             </a>
         <?php
