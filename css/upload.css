@@ -34,3 +34,9 @@
     width:100%;
     height:auto;
 }
+#uploadInfo {
+    position:relative;
+}
+#uploadInfo div .author {
+    color:#0464F4;
+}

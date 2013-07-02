@@ -33,5 +33,12 @@ body {
     font-size:24px;
     font-weight:normal;
 }
+.hidden {
+    display: none;
+}
 
-
+.show {
+    cursor: pointer;
+    color:#0464F4;
+    text-decoration: underline;
+}

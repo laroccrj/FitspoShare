@@ -121,3 +121,40 @@
     width:24px;
     height:auto;
 }
+#uploadInfo {
+    position:relative;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #ccc;
+}
+#uploadInfo .author{
+    color:#ffa100;
+    font-size: 48px;
+    top:0px;
+    left:0px;
+}
+#uploadInfo .author:hover{
+    color:#0464F4;
+}
+#uploadInfo .author .profilePic{
+    float:left;
+    width:48px;
+    height:48px;
+    overflow:hidden;
+    margin-right: 10px;
+    margin-top: -4px;
+}
+#uploadInfo .author .profilePic img{
+    width:48px;
+    height:auto;
+}
+#uploadInfo .highFives {
+    color:#0464F4;
+    font-size:24px;
+    position:absolute;
+    top:0px;
+    right:0px;
+}
+#uploadInfo .highFives .number {
+    color:#00CC00;
+}

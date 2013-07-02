@@ -4,7 +4,7 @@
     $db = $conn->fitspo;
     $collection = $db->uploads;
 
-    $uploads = $collection->find(array("date" => array('$gt' => (int)date("U") - 604800)))->limit(12);
+    $uploads = $collection->find(array("date" => array('$gt' => (int)date("U") - 604800)))->sort(array("highFives" => -1))->limit(12);
     //var_dump($uploads);
     
     
