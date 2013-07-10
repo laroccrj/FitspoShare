@@ -1,0 +1,84 @@
+#profilePicture {
+    position:absolute;
+    top:10px;
+    left:0px;
+    width:128px;
+    height:128px;
+    overflow:hidden;
+    border: 3px solid #0464F4;
+    border-radius: 10px;
+}
+#profilePicture img{
+    width:128px;
+    height:auto;
+}
+#information {
+    margin-top: 20px;
+    margin-left: 140px;
+    margin-bottom: 20px;
+}
+#information .name {
+    font-size: 64px;
+    color: #FFA100;
+}
+#information .highFives {
+    color: #00CC00;
+    font-size:64px;
+    margin-top: 25px;
+}
+#information .highFives img{
+    float:left;
+    margin-top:-5px;
+}
+#uploads .none{
+    font-size: 24px;
+    color: #aaa;
+    font-style:italic;
+}
+#uploads .upload {
+    margin-left: 10px;
+    float:left;
+    border: 1px solid #ccc;
+    height: 230px;
+    width: 230px;
+    padding:20px;
+    box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    margin-bottom: 20px;
+    position:relative;
+}
+#uploads .upload:hover {
+    box-shadow: 3px 3px 3px #ccc;
+}
+#uploads .upload .image {
+    height:120px;
+    overflow: hidden;
+    margin-left:auto;
+    margin-right: auto;
+}
+#uploads .upload .image img {
+    width:100%;
+    height:auto;
+    
+}
+#uploads .upload h1 {
+    font-size:16px;
+    padding-bottom: 5px;
+    margin-bottom: 5px;
+    color: #0464F4;
+}    
+#uploads .upload .highFives {
+    color:#00CC00;
+    font-size:24px;
+    text-align: right;
+    position:absolute;
+    bottom: 20px;
+    right:20px;
+}
+#uploads .upload .highFives img{
+    width:24px;
+    height:auto;
+    margin-left: 5px;
+    float: right;
+    margin-top: -2px;
+}

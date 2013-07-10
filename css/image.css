@@ -72,6 +72,9 @@
     font-size:24px;
     margin-bottom: 10px;
 }
+.comment .name:hover{
+    color:#FFA100;
+}
 .comment .content {
     margin-bottom: 10px;
     width: 95%;
@@ -121,6 +124,8 @@
     height:24px;
     overflow:hidden;
     margin-right: 10px;
+    border: 2px solid #0464F4;
+    border-radius: 5px;
 }
 .comment .name .profilePic img{
     width:24px;
@@ -134,12 +139,14 @@
     margin-top: 20px;
     padding-top: 20px;
     border-top: 1px solid #ccc;
+    height:48px;
 }
 #uploadInfo .author{
     color:#ffa100;
     font-size: 48px;
-    top:0px;
+    top:20px;
     left:0px;
+    position:absolute;
 }
 #uploadInfo .author:hover{
     color:#0464F4;

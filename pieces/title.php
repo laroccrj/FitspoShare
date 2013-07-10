@@ -11,12 +11,14 @@
     </a>
     <div id="access">
         <?php if(ISSET($_SESSION["user"]) && $_SESSION["user"]->loggedIn){ ?>
-            <div id="info">
-                <div id="img">
-                    <img src="images/profile/<?php echo $_SESSION["user"]->profilePicture; ?>" >
+            <a href="profile.php?id=<?php echo $_SESSION["user"]->id; ?>">
+                <div id="info">
+                    <div id="img">
+                        <img src="images/profile/<?php echo $_SESSION["user"]->profilePicture; ?>" >
+                    </div>
+                    <?php echo $_SESSION["user"]->nickname; ?>
                 </div>
-                <?php echo $_SESSION["user"]->nickname; ?>
-            </div>
+            </a>
             <a href="logout.php">
                 <div id="logout">
                     Log Out
