@@ -61,12 +61,14 @@
                     </div>
                 </div>
                 <div id="uploadInfo">
-                    <div class="author">
-                        <div class="profilePic">
-                            <img src="images/profile/<?php echo $image->user->profilePicture; ?>" >
+                    <a href="profile.php?id=<?php echo $image->user->id; ?>">
+                        <div class="author">
+                            <div class="profilePic">
+                                <img src="images/profile/<?php echo $image->user->profilePicture; ?>" >
+                            </div>
+                            <?php echo $image->user->nickname; ?> 
                         </div>
-                        <?php echo $image->user->nickname; ?> 
-                    </div>
+                    </a>
                     <div class="highFives"><?php echo $image->highFives; ?><img src="images/static/highfive.png"></div>
                 </div>
                 <div>
@@ -94,12 +96,14 @@
                                 $user = new User($comment["userId"]);
                     ?>
                         <div class="comment">
-                            <div class="name">
-                                <div class="profilePic">
-                                    <img src="images/profile/<?php echo $user->profilePicture; ?>" >
+                            <a href="profile.php?id=<?php echo $user->id; ?>">
+                                <div class="name">
+                                    <div class="profilePic">
+                                        <img src="images/profile/<?php echo $user->profilePicture; ?>" >
+                                    </div>
+                                    <?php echo $user->nickname; ?>
                                 </div>
-                                <?php echo $user->nickname; ?>
-                            </div>
+                            </a>
                             <div class="content"><?php echo $comment["comment"]; ?></div>
                             <div class="date">
                                 <?php 
@@ -112,12 +116,14 @@
                                         $user = new User($reply["userId"]);
                             ?>
                                 <div class="reply">
-                                    <div class="name">
-                                        <div class="profilePic">
-                                            <img src="images/profile/<?php echo $user->profilePicture; ?>" >
+                                    <a href="profile.php?id=<?php echo $user->id; ?>">
+                                        <div class="name">
+                                            <div class="profilePic">
+                                                <img src="images/profile/<?php echo $user->profilePicture; ?>" >
+                                            </div>
+                                            <?php echo $user->nickname; ?>
                                         </div>
-                                        <?php echo $user->nickname; ?>
-                                    </div>
+                                    </a>
                                     <div class="content"><?php echo $reply["comment"]; ?></div>
                                     <div class="date">
                                         <?php 
